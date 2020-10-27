@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+import java.util.Optional;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Controller
@@ -30,7 +33,7 @@ public class InventoryController {
     })
     @GetMapping(path = INVENTORY_URL, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Inventory getAllInventory() {
+    public List<Inventory> getAllInventory() {
         return inventoryService.getAllInventory();
     }
 
@@ -40,7 +43,7 @@ public class InventoryController {
     })
     @GetMapping(path = INVENTORY_URL_ID, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Inventory getInventoryById(@PathVariable String id) {
+    public Optional<Inventory> getInventoryById(@PathVariable String id) {
         return inventoryService.getInventoryById(id);
     }
 
